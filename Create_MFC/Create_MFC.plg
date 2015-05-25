@@ -1,0 +1,54 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Create_MFC - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/ziyuan.res" /d "_DEBUG" "F:\MFCѧϰ\Create_MFC\ziyuan.rc"" 
+Creating temporary file "C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC3.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Create_MFC.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\MFCѧϰ\Create_MFC\Create_MFC.cpp"
+"F:\MFCѧϰ\Create_MFC\MainDlg.cpp"
+"F:\MFCѧϰ\Create_MFC\Dialog2.cpp"
+]
+Creating command line "cl.exe @C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC3.tmp" 
+Creating temporary file "C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC4.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Create_MFC.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\MFCѧϰ\Create_MFC\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC4.tmp" 
+Creating temporary file "C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC5.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Create_MFC.pdb" /debug /machine:I386 /out:"Debug/Create_MFC.exe" /pdbtype:sept 
+".\Debug\Create_MFC.obj"
+".\Debug\MainDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\ziyuan.res"
+".\Debug\Dialog2.obj"
+]
+Creating command line "link.exe @C:\Users\LIUZHE~1\AppData\Local\Temp\RSPDFC5.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+Create_MFC.cpp
+MainDlg.cpp
+Dialog2.cpp
+Generating Code...
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/Create_MFC.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\Create_MFC.sbr" ".\Debug\MainDlg.sbr" ".\Debug\Dialog2.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Create_MFC.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
