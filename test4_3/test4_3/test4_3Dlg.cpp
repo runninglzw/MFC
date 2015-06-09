@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(Ctest4_3Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON4, &Ctest4_3Dlg::OnBnClickedButton4)
 	ON_BN_CLICKED(IDC_BUTTON5, &Ctest4_3Dlg::OnBnClickedButton5)
 	ON_WM_DESTROY()
+	ON_BN_CLICKED(IDC_BUTTON6, &Ctest4_3Dlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
@@ -149,4 +150,19 @@ void Ctest4_3Dlg::OnDestroy()
 	//退出之前必须取消关联窗口对象，与Attach对应
 	edit.Detach();
 	button.UnsubclassWindow();
+}
+
+
+void Ctest4_3Dlg::OnBnClickedButton6()
+{
+	//定义一个矩形区域
+	CRect rect;
+	//获得该控件矩形区域(屏幕坐标)
+	edit.GetWindowRect(rect);
+	//是把屏幕坐标转换为窗口坐标
+	ScreenToClient(rect);
+	edit.MoveWindow(rect);
+	//实时更新
+	Invalidate();
+
 }
