@@ -45,6 +45,12 @@ BEGIN_MESSAGE_MAP(Ctest4_3Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON8, &Ctest4_3Dlg::OnBnClickedButton8)
 	ON_BN_CLICKED(IDC_BUTTON10, &Ctest4_3Dlg::OnBnClickedButton10)
 	ON_BN_CLICKED(IDC_BUTTON11, &Ctest4_3Dlg::OnBnClickedButton11)
+	ON_BN_CLICKED(IDC_BUTTON12, &Ctest4_3Dlg::OnBnClickedButton12)
+	ON_BN_CLICKED(IDC_BUTTON13, &Ctest4_3Dlg::OnBnClickedButton13)
+	ON_BN_CLICKED(IDC_BUTTON14, &Ctest4_3Dlg::OnBnClickedButton14)
+	ON_BN_CLICKED(IDC_BUTTON15, &Ctest4_3Dlg::OnBnClickedButton15)
+	ON_BN_CLICKED(IDC_BUTTON16, &Ctest4_3Dlg::OnBnClickedButton16)
+	ON_BN_CLICKED(IDC_BUTTON17, &Ctest4_3Dlg::OnBnClickedButton17)
 END_MESSAGE_MAP()
 
 
@@ -235,5 +241,64 @@ void Ctest4_3Dlg::OnBnClickedButton11()
 	CWnd *p=FindWindow(_T("SysListView32"),NULL);
 	if(p && p->IsIconic())
 		p->ShowWindow(SW_MAXIMIZE);
-	
+
+}
+
+//设置和取消前端显示风格
+void Ctest4_3Dlg::OnBnClickedButton12()
+{
+	if(GetExStyle() & WS_EX_TOPMOST)//如果是前端显示风格，则取消前端显示
+		SetWindowPos(&wndNoTopMost,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
+	else
+		SetWindowPos(&wndTopMost,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
+
+}
+
+//将窗口设置为最top层，也就是最底层
+void Ctest4_3Dlg::OnBnClickedButton13()
+{
+	list.BringWindowToTop();
+	Invalidate();
+}
+
+//获得最top层的窗口
+void Ctest4_3Dlg::OnBnClickedButton14()
+{
+	CWnd *p=GetTopWindow();
+	CString str;
+	p->GetWindowText(str);
+	SetWindowText(str);
+}
+
+//将窗口推到前台
+void Ctest4_3Dlg::OnBnClickedButton15()
+{
+	CWnd *p=FindWindow(NULL,_T("面试 - 记事本"));
+	if(p)
+		p->SetForegroundWindow();//设置为最前台的窗口
+	CString str;
+	CWnd *p2=GetForegroundWindow();//获得最前台的窗口
+	p2->GetWindowText(str);
+	SetWindowText(str);
+}
+
+//将窗口设置为闪烁
+void Ctest4_3Dlg::OnBnClickedButton16()
+{
+	CWnd *p=FindWindow(NULL,_T("面试 - 记事本"));
+	if(p)
+		p->FlashWindow(true);
+}
+
+//获得本窗口的所有子窗口
+void Ctest4_3Dlg::OnBnClickedButton17()
+{
+	CWnd *p=GetWindow(GW_CHILD);//p是子窗口集合
+	CString str;
+	while(p)
+	{
+		p->GetWindowText(str);
+		AfxMessageBox(str);
+		p=p->GetWindow(GW_HWNDNEXT);//遍历下一个窗口
+	}
 }
