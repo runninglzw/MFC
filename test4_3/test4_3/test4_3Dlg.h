@@ -36,4 +36,9 @@ public:
 	afx_msg void OnBnClickedButton5();
 	afx_msg void OnDestroy();
 	afx_msg void OnBnClickedButton6();
+	afx_msg void OnBnClickedButton7();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnBnClickedButton8();
+	afx_msg void OnBnClickedButton10();
+	afx_msg void OnBnClickedButton11();
 };

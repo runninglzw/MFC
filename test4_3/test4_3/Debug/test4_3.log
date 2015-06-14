@@ -1,4 +1,4 @@
-﻿生成启动时间为 2015/6/9 22:27:58。
+﻿生成启动时间为 2015/6/14 16:28:16。
      1>项目“F:\MFC学习\test4_3\test4_3\test4_3.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test4_3.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt test4_3Dlg.cpp
@@ -14,4 +14,4 @@
 
 生成成功。
 
-已用时间 00:00:00.94
+已用时间 00:00:01.25

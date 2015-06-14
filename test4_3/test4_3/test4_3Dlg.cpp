@@ -40,6 +40,11 @@ BEGIN_MESSAGE_MAP(Ctest4_3Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON5, &Ctest4_3Dlg::OnBnClickedButton5)
 	ON_WM_DESTROY()
 	ON_BN_CLICKED(IDC_BUTTON6, &Ctest4_3Dlg::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON7, &Ctest4_3Dlg::OnBnClickedButton7)
+	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_BUTTON8, &Ctest4_3Dlg::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_BUTTON10, &Ctest4_3Dlg::OnBnClickedButton10)
+	ON_BN_CLICKED(IDC_BUTTON11, &Ctest4_3Dlg::OnBnClickedButton11)
 END_MESSAGE_MAP()
 
 
@@ -109,7 +114,7 @@ void Ctest4_3Dlg::OnBnClickedButton1()
 {
 	DestroyWindow();
 }
-
+//创建一个"syslistview32"控件
 CWnd list;
 void Ctest4_3Dlg::OnBnClickedButton2()
 {
@@ -119,7 +124,7 @@ void Ctest4_3Dlg::OnBnClickedButton2()
 	}
 }
 
-
+//CWnd转换为句柄
 void Ctest4_3Dlg::OnBnClickedButton3()
 {
 	CWnd *p=GetDlgItem(IDOK);
@@ -137,7 +142,7 @@ void Ctest4_3Dlg::OnBnClickedButton4()
 	p->SetWindowText(_T("通过临时对象Set"));
 }
 
-
+//初始化时候获得=控件并更改内容
 void Ctest4_3Dlg::OnBnClickedButton5()
 {
 	edit.SetWindowText(_T("通过全局对象Set"));
@@ -152,7 +157,7 @@ void Ctest4_3Dlg::OnDestroy()
 	button.UnsubclassWindow();
 }
 
-
+//窗口初始化时候将编辑框控件绑定，这里扩大它的长和宽
 void Ctest4_3Dlg::OnBnClickedButton6()
 {
 	//定义一个矩形区域
@@ -161,8 +166,74 @@ void Ctest4_3Dlg::OnBnClickedButton6()
 	edit.GetWindowRect(rect);
 	//是把屏幕坐标转换为窗口坐标
 	ScreenToClient(rect);
+	//矩形长和宽都增加15
+	rect.InflateRect(15,15);
 	edit.MoveWindow(rect);
 	//实时更新
 	Invalidate();
 
+}
+
+//设置一个计时器，用来平移绑定的Button2
+void Ctest4_3Dlg::OnBnClickedButton7()
+{
+	//设置一个计时器，第一个参数为计时器id，第二个为时间间隔
+	SetTimer(1,10,NULL);
+}
+
+
+
+void Ctest4_3Dlg::OnTimer(UINT_PTR nID)
+{
+	if(nID==1)
+	{
+		//将button对应的button2右移
+		CRect rect;
+		button.GetWindowRect(rect);
+		ScreenToClient(rect);
+		//改变矩形的x坐标，不改变y坐标(平移矩形)
+		rect.OffsetRect(2,0);
+		//获得客户区的矩形区域
+		CRect client;
+		GetWindowRect(client);
+		//如果到达客户区右边界
+		if(client.right<=rect.right)
+		{
+			rect.OffsetRect(-client.right,0);//从左边开始
+			//KillTimer(1);//结束计时器
+		}
+		//button.MoveWindow(rect);移动窗口
+		button.SetWindowPos(&wndTop,rect.left,rect.top,rect.Width(),rect.Height(),0);//设置button的位置，wndtop设置z轴，表示其他控件在其之上
+		Invalidate();
+		CDialogEx::OnTimer(nID);
+	}
+}
+
+//ShowWindow函数
+void Ctest4_3Dlg::OnBnClickedButton8()
+{
+	CWnd *pc=GetDlgItem(IDCANCEL);
+	if(pc->IsWindowVisible())//判断窗口是否可见
+		pc->ShowWindow(SW_HIDE);
+	else
+		pc->ShowWindow(SW_SHOW);
+}
+
+//设置窗口是否可用
+void Ctest4_3Dlg::OnBnClickedButton10()
+{
+	CWnd *p=GetDlgItem(IDCANCEL);
+	if(p->IsWindowEnabled())//判断窗口是否可用
+		p->EnableWindow(false);
+	else
+		p->EnableWindow(true);
+}
+
+//判断某一个窗口（这里使用GitHub窗口为例）是否是最小化，并将它最大化(ISZoomed),
+void Ctest4_3Dlg::OnBnClickedButton11()
+{
+	CWnd *p=FindWindow(_T("SysListView32"),NULL);
+	if(p && p->IsIconic())
+		p->ShowWindow(SW_MAXIMIZE);
+	
 }
