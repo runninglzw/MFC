@@ -54,6 +54,9 @@
     <None Include="res\test46.rc2">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="E:\VS2012\Common7\IDE\Extensions\Microsoft\VsGraphics\Assets\Cursors\fill.cur">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\test4-6.ico">

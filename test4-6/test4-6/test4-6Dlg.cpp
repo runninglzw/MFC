@@ -30,6 +30,9 @@ void Ctest46Dlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(Ctest46Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_SETCURSOR()
+	ON_WM_MOUSEMOVE()
+	ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
@@ -38,6 +41,11 @@ END_MESSAGE_MAP()
 BOOL Ctest46Dlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+	//获得配置文件的数据
+	int left=theApp.GetProfileInt("WindowRect","left",-1);
+	int top=theApp.GetProfileInt("WindowRect","top",-1);
+	int right=theApp.GetProfileInt("WindowRect","right",-1);
+	int bottom=theApp.GetProfileInt("WindowRect","bottom",-1);
 	//SetWindowText(theApp.m_lpCmdLine);
 	CString str;
 	str.Format("m_nCmdShow=%d",theApp.m_nCmdShow);
@@ -48,8 +56,11 @@ BOOL Ctest46Dlg::OnInitDialog()
 	SetDlgItemText(IDC_HELPNAME,theApp.m_pszHelpFilePath);
 	SetDlgItemText(IDC_REGISTNAME,theApp.m_pszRegistryKey);
 	SetDlgItemText(IDC_PROFILE,theApp.m_pszProfileName);
-	//加载图标
-	HICON hicon=theApp.LoadIcon(IDI_ICON1);
+	//加载进程图标
+	//HICON hicon=theApp.LoadIcon(IDI_ICON1);
+	//加载系统图标
+	//HICON hicon=::LoadIcon(NULL,IDI_HAND);
+	HICON hicon=theApp.LoadStandardIcon(IDI_HAND);
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
 	SetIcon(hicon, TRUE);			// 设置大图标
@@ -96,3 +107,37 @@ HCURSOR Ctest46Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+//设置光标
+BOOL Ctest46Dlg::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	HCURSOR hcur=theApp.LoadStandardCursor(IDC_WAIT);
+	SetCursor(hcur);
+	return TRUE;
+	//return CDialogEx::OnSetCursor(pWnd, nHitTest, message);
+}
+
+//鼠标移动时设置光标
+void Ctest46Dlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	HCURSOR hcur=theApp.LoadStandardCursor(IDC_IBEAM);
+	SetCursor(hcur);
+	CDialogEx::OnMouseMove(nFlags, point);
+}
+
+
+void Ctest46Dlg::OnDestroy()
+{
+	CDialogEx::OnDestroy();
+	CRect rect;
+	//获得窗口的矩形
+	GetWindowRect(rect);
+	//将矩形位置写入到配置文件中
+	theApp.WriteProfileInt("WindowRect","left",rect.left);
+	theApp.WriteProfileInt("WindowRect","top",rect.top);
+	theApp.WriteProfileInt("WindowRect","right",rect.right);
+	theApp.WriteProfileInt("WindowRect","bottom",rect.bottom);
+
+	// TODO: 在此处添加消息处理程序代码
+}

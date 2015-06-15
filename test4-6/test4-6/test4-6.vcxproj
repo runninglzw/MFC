@@ -119,6 +119,7 @@
     <ResourceCompile Include="test4-6.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="E:\VS2012\Common7\IDE\Extensions\Microsoft\VsGraphics\Assets\Cursors\fill.cur" />
     <None Include="res\test46.rc2" />
   </ItemGroup>
   <ItemGroup>
@@ -129,4 +130,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="test4-6.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
