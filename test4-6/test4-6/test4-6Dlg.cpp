@@ -33,6 +33,7 @@ BEGIN_MESSAGE_MAP(Ctest46Dlg, CDialogEx)
 	ON_WM_SETCURSOR()
 	ON_WM_MOUSEMOVE()
 	ON_WM_DESTROY()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -46,10 +47,15 @@ BOOL Ctest46Dlg::OnInitDialog()
 	int top=theApp.GetProfileInt("WindowRect","top",-1);
 	int right=theApp.GetProfileInt("WindowRect","right",-1);
 	int bottom=theApp.GetProfileInt("WindowRect","bottom",-1);
-	//SetWindowText(theApp.m_lpCmdLine);
+	MoveWindow(left,top,right-left,bottom-top);
 	CString str;
-	str.Format("m_nCmdShow=%d",theApp.m_nCmdShow);
+	//获得配置文件的内容
+	GetPrivateProfileString("title","ti1","default",str.GetBuffer(100),100,"./mytitle.ini");//getbuffer获取缓冲区
+	str.ReleaseBuffer();//释放buffer
 	SetWindowText(str);
+	//CString str;
+	//str.Format("m_nCmdShow=%d",theApp.m_nCmdShow);
+	//SetWindowText(str);
 	AfxMessageBox("看标题！");
 	SetDlgItemText(IDC_APPNAME,theApp.m_pszAppName);
 	SetDlgItemText(IDC_EXENAME,theApp.m_pszExeName);
@@ -138,6 +144,25 @@ void Ctest46Dlg::OnDestroy()
 	theApp.WriteProfileInt("WindowRect","top",rect.top);
 	theApp.WriteProfileInt("WindowRect","right",rect.right);
 	theApp.WriteProfileInt("WindowRect","bottom",rect.bottom);
-
+	WritePrivateProfileString("title","ti1","刘振威","./mytitle.ini");
+	//theApp.WriteProfileString("title","ti1","刘振威");
 	// TODO: 在此处添加消息处理程序代码
+}
+
+
+HBRUSH Ctest46Dlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+	//获得指定控件的ID号
+	if(pWnd-> GetDlgCtrlID()==IDC_STATIC) 
+    { 
+        pDC-> SetBkMode(TRANSPARENT);   //你可以修改背景模式
+        pDC->SetTextColor(RGB(255,0,0));  //你当然可以修改字体颜色
+    } 
+	if(pWnd-> GetDlgCtrlID()==IDC_APPNAME) 
+    { 
+        //pDC-> SetBkMode(TRANSPARENT);   //你可以修改背景模式
+        pDC->SetTextColor(RGB(0,255,0));  //你当然可以修改字体颜色
+    } 
+	return hbr;
 }
