@@ -68,8 +68,9 @@ bool CLoginDlg::CheckUser(CString name, CString pass)
 	CFile file;
 	if(!file.Open("./users.dat",CFile::modeRead|CFile::shareDenyNone))
 	{
-		AfxMessageBox("登录失败！账号不存在");
-		return FALSE ;
+		CreateUser();
+		if(!file.Open("./users.dat",CFile::modeRead|CFile::shareDenyNone))	
+			return FALSE ;
 	}
 	user u;
 	while(file.Read(&u,sizeof(u)))
@@ -81,4 +82,19 @@ bool CLoginDlg::CheckUser(CString name, CString pass)
 		}
 	}
 	return FALSE;
+}
+
+//第一次登陆时候创建一个管理员账号
+void CLoginDlg::CreateUser(void)
+{
+	CFile file;
+	if(!file.Open("./users.dat",CFile::modeCreate|CFile::modeWrite))
+	{
+		AfxMessageBox("创建用户文件时失败！可能是磁盘空间不够！");
+		return;
+	}
+	//创建成功后将管理员账号写入到文件中
+	user u={"admin","admin",1};
+	file.Write(&u,sizeof(u));
+
 }

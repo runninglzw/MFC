@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(Ctest51Dlg, CDialogEx)
 	ON_BN_CLICKED(IDCANCEL, &Ctest51Dlg::OnBnClickedCancel)
 	ON_BN_CLICKED(IDRELOGIN, &Ctest51Dlg::OnBnClickedRelogin)
 	ON_BN_CLICKED(IDSEARCH, &Ctest51Dlg::OnBnClickedSearch)
+	ON_BN_CLICKED(IDINFO, &Ctest51Dlg::OnBnClickedInfo)
 END_MESSAGE_MAP()
 
 
@@ -125,4 +126,10 @@ void Ctest51Dlg::OnBnClickedSearch()
 	CPriorDlg prior;
 	prior.DoModal();
 	ShowWindow(SW_SHOW);
+}
+
+//员工信息的增删改查
+void Ctest51Dlg::OnBnClickedInfo()
+{
+	// TODO: 在此添加控件通知处理程序代码
 }

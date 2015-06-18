@@ -22,4 +22,5 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
 	bool CheckUser(CString name, CString pass);
+	void CreateUser(void);
 };

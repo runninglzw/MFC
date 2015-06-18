@@ -39,6 +39,12 @@
     <ClInclude Include="PriorDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="InfoDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InsertPeople.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test5-1.cpp">
@@ -54,6 +60,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PriorDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InsertPeople.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

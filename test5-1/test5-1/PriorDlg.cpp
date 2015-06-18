@@ -60,6 +60,13 @@ void CPriorDlg::OnBnClickedAdd()
 	user u;
 	//获得账号名
 	GetDlgItemText(IDC_EDIT1,u.name,sizeof(u.name));//c语言函数，空间有限
+	GetDlgItemText(IDC_EDIT2,u.pass,sizeof(u.pass));
+	//c语言中比较两个字符串用strcmp，不能用==
+	if(!strcmp(u.name,"")||!strcmp(u.pass,""))
+	{
+		AfxMessageBox("账号和密码不允许为空！");
+		return ;
+	}
 	//获得list控件
 	CListCtrl *p=(CListCtrl *)GetDlgItem(IDC_LIST1);
 	//list中的账号数
@@ -77,7 +84,7 @@ void CPriorDlg::OnBnClickedAdd()
 	}
 	//没有该账号则进行添加,在list中添加一行，先insertitem(行号，值),在setItemtext（行号，列号，值）
 	p->InsertItem(count,u.name);
-	GetDlgItemText(IDC_EDIT2,u.pass,sizeof(u.pass));
+	
 	p->SetItemText(count,1,u.pass);
 	//获得combobox控件，并把它的值赋给第三列
 	CComboBox * combo=(CComboBox *)GetDlgItem(IDC_COMBO1);
@@ -89,16 +96,71 @@ void CPriorDlg::OnBnClickedAdd()
 
 }
 
-//删除
+//删除账户
 void CPriorDlg::OnBnClickedDel()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	//获得列表控件
+	CListCtrl *p=(CListCtrl *)GetDlgItem(IDC_LIST1);
+	//获得删除的行号
+	//int index=p->GetSelectionMark();
+	//获得删除链表的头结点
+	POSITION pos=p->GetFirstSelectedItemPosition();
+	//获得删除的行号
+	int index=p->GetNextSelectedItem(pos);
+	//判断是否有选中的
+	if(index<0)
+	{
+		AfxMessageBox("请选择一项！");
+	}
+	//判断选中的是否是admin
+	else if(p->GetItemText(index,0)=="admin")
+		AfxMessageBox("不允许删除admin");
+	else
+	{
+		CString str;
+		str.Format("确定要删除%s么？",p->GetItemText(index,0));
+		if(IDYES==AfxMessageBox(str,MB_YESNO))
+			p->DeleteItem(index);
+	}
 }
 
-//修改
+//修改账户信息
 void CPriorDlg::OnBnClickedModify()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	//获得列表控件
+	CListCtrl *p=(CListCtrl *)GetDlgItem(IDC_LIST1);
+	//获得删除的行号
+	//int index=p->GetSelectionMark();
+	//获得删除链表的头结点
+	POSITION pos=p->GetFirstSelectedItemPosition();
+	//获得删除的行号
+	int index=p->GetNextSelectedItem(pos);
+	//判断是否有选中的
+	if(index<0)
+	{
+		AfxMessageBox("请选择一项！");
+	}
+	//判断选中的是否是admin
+	else if(p->GetItemText(index,0)=="admin")
+		AfxMessageBox("不允许修改admin");
+	else
+	{
+		CString str;
+		str.Format("确定要修改%s么？",p->GetItemText(index,0));
+		//确认修改
+		if(IDYES==AfxMessageBox(str,MB_YESNO))
+		{
+			//获得密码内容
+			CString pass;
+			GetDlgItemText(IDC_EDIT2,pass);
+			//进行密码修改
+			p->SetItemText(index,1,pass);
+			//获得权限内容
+			CComboBox *combo=(CComboBox *)GetDlgItem(IDC_COMBO1);
+			int prior=combo->GetCurSel();
+			p->SetItemText(index,2,prior?"管理员":"普通");
+		}
+	}
 }
 //将文件信息读入列表
 void CPriorDlg::Readuesr(CListCtrl * p)
@@ -149,12 +211,11 @@ void CPriorDlg::OnDestroy()
 {
 	CDialogEx::OnDestroy();
 	CFile file;
-	if(!file.Open("./users.dat",CFile::modeCreate|CFile::modeNoTruncate|CFile::modeWrite))
+	if(!file.Open("./users.dat",CFile::modeCreate|CFile::modeWrite))
 	{
 		AfxMessageBox("写入文件错误！");
 		return;
 	}
-	file.SeekToEnd();
 	user u;
 	CListCtrl *p=(CListCtrl *)GetDlgItem(IDC_LIST1);
 	int count=p->GetItemCount(),i=0;

@@ -32,4 +32,5 @@ public:
 	afx_msg void OnBnClickedCancel();
 	afx_msg void OnBnClickedRelogin();
 	afx_msg void OnBnClickedSearch();
+	afx_msg void OnBnClickedInfo();
 };
