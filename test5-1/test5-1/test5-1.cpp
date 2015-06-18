@@ -6,6 +6,7 @@
 #include "test5-1.h"
 #include "test5-1Dlg.h"
 #include "logindlg.h"
+#include "PriorDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,7 +24,7 @@ END_MESSAGE_MAP()
 
 Ctest51App::Ctest51App()
 {
-	// TODO: 在此处添加构造代码，
+
 	// 将所有重要的初始化放置在 InitInstance 中
 }
 
@@ -31,7 +32,6 @@ Ctest51App::Ctest51App()
 // 唯一的一个 Ctest51App 对象
 
 Ctest51App theApp;
-
 
 // Ctest51App 初始化
 
@@ -61,6 +61,7 @@ BOOL Ctest51App::InitInstance()
 	Ctest51Dlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
+
 	if (nResponse == IDOK)
 	{
 		// TODO: 在此放置处理何时用

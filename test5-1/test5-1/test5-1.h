@@ -19,6 +19,7 @@ class Ctest51App : public CWinApp
 {
 public:
 	Ctest51App();
+	user info;
 
 // ÖØÐ´
 public:

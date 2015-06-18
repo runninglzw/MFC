@@ -5,6 +5,7 @@
 #include "test5-1.h"
 #include "LoginDlg.h"
 #include "afxdialogex.h"
+extern Ctest51App theApp;//用来保存用户信息
 
 
 // CLoginDlg 对话框
@@ -41,7 +42,7 @@ void CLoginDlg::OnBnClickedOk()
 	CString strName,strPassword;
 	GetDlgItemText(IDC_LOGIN,strName);
 	GetDlgItemText(IDC_PASSWORD,strPassword);
-	if(strName=="admin" && strPassword=="1")
+	if(CheckUser(strName,strPassword))
 		CDialogEx::OnOK();
 	else
 	{
@@ -58,4 +59,26 @@ void CLoginDlg::OnBnClickedCancel()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialogEx::OnCancel();
+}
+
+
+bool CLoginDlg::CheckUser(CString name, CString pass)
+{
+	//CString strName,strPassword;
+	CFile file;
+	if(!file.Open("./users.dat",CFile::modeRead|CFile::shareDenyNone))
+	{
+		AfxMessageBox("登录失败！账号不存在");
+		return FALSE ;
+	}
+	user u;
+	while(file.Read(&u,sizeof(u)))
+	{
+		if(u.name==name && u.pass==pass)
+		{
+			theApp.info=u;
+			return TRUE;
+		}
+	}
+	return FALSE;
 }

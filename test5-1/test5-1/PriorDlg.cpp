@@ -5,12 +5,7 @@
 #include "test5-1.h"
 #include "PriorDlg.h"
 #include "afxdialogex.h"
-struct user
-{
-	char name[20];
-	char pass[20];
-	int prior;
-};
+
 
 // CPriorDlg ¶Ô»°¿ò
 

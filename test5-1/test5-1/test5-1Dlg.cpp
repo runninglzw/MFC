@@ -44,7 +44,9 @@ BOOL Ctest51Dlg::OnInitDialog()
 {
 
 	CDialogEx::OnInitDialog();
-
+	CString title=theApp.info.name;
+	SetWindowText(title);
+	GetDlgItem(IDSEARCH)->EnableWindow(theApp.info.prior);//普通用户无法添加账户
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
@@ -99,7 +101,7 @@ void Ctest51Dlg::OnBnClickedCancel()
 	//CDialogEx::OnCancel();
 }
 
-
+//重新登录
 void Ctest51Dlg::OnBnClickedRelogin()
 {
 	ShowWindow(SW_HIDE);
@@ -108,10 +110,15 @@ void Ctest51Dlg::OnBnClickedRelogin()
 	if(IDCANCEL==result)
 		OnCancel();
 	else
+	{
+		CString title=theApp.info.name;
+		SetWindowText(title);
+		GetDlgItem(IDSEARCH)->EnableWindow(theApp.info.prior);//普通用户无法添加账户
 		ShowWindow(SW_SHOW);
+	}
 }
 
-//查看账户
+//增加账户
 void Ctest51Dlg::OnBnClickedSearch()
 {
 	ShowWindow(SW_HIDE);

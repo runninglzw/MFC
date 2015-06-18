@@ -32,7 +32,12 @@
 
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
-
+struct user
+{
+	char name[20];
+	char pass[20];
+	int prior;
+};
 
 
 
