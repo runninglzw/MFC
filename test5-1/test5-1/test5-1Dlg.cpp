@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "logindlg.h"
 #include "Priordlg.h"
+#include "InfoDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -131,5 +132,8 @@ void Ctest51Dlg::OnBnClickedSearch()
 //员工信息的增删改查
 void Ctest51Dlg::OnBnClickedInfo()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	ShowWindow(SW_HIDE);
+	CInfoDlg info;
+	info.DoModal();
+	ShowWindow(SW_SHOW);
 }
