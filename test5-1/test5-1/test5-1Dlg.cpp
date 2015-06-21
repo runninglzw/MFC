@@ -40,7 +40,9 @@ BEGIN_MESSAGE_MAP(Ctest51Dlg, CDialogEx)
 	ON_BN_CLICKED(IDSEARCH, &Ctest51Dlg::OnBnClickedSearch)
 	ON_BN_CLICKED(IDINFO, &Ctest51Dlg::OnBnClickedInfo)
 	ON_BN_CLICKED(IDCOLOR, &Ctest51Dlg::OnBnClickedColor)
+	//	ON_WM_CTLCOLOR()
 	ON_WM_CTLCOLOR()
+	ON_BN_CLICKED(IDCOLOR2, &Ctest51Dlg::OnBnClickedColor2)
 END_MESSAGE_MAP()
 
 
@@ -54,7 +56,8 @@ BOOL Ctest51Dlg::OnInitDialog()
 	SetWindowText(title);
 	GetDlgItem(IDSEARCH)->EnableWindow(theApp.info.prior);//普通用户无法添加账户
 	//设置前景色和背景色
-
+	theApp.Ctrlbk=GetProfileInt("Settings","CtrlColor",RGB(128,128,128));
+	theApp.Textbk=GetProfileInt("Settings","TextColor",RGB(155,0,0));
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
@@ -144,21 +147,53 @@ void Ctest51Dlg::OnBnClickedInfo()
 	ShowWindow(SW_SHOW);
 }
 
-//extern Ctest51App theApp;
+//设置背景色的方法
 void Ctest51Dlg::OnBnClickedColor()
 {
 	CColorDialog dlg;
 	if(IDCANCEL==dlg.DoModal())
 		return ;
 	COLORREF col=dlg.GetColor();
-	//theApp.SetDlgColor(col,col);
+	theApp.Ctrlbk=col;
+	//实时更新
+	Invalidate();
 }
 
+//设置字体颜色的方法
+void Ctest51Dlg::OnBnClickedColor2()
+{
+	CColorDialog dlg;
+	if(IDCANCEL==dlg.DoModal())
+		return ;
+	COLORREF col=dlg.GetColor();
+	theApp.Textbk=col;
+	//实时更新
+	Invalidate();
+}
 
+//设置背景色具体实现 参考：  http://www.cnblogs.com/staring-hxs/archive/2013/01/09/2853126.html
 HBRUSH Ctest51Dlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+	//OnCtlColor能改变Static等子控件的颜色，对于Button必须设置其属性Owner Draw为True,才能改变Button按钮背景色（CButton 文本的字体颜色并不能通过SetBkColor来改变，需要自己重绘CButton，在DrawItem中进行实现。
+	if(nCtlColor==CTLCOLOR_DLG)
+	{
+		pDC->SetBkColor(theApp.Ctrlbk);
+		HBRUSH b=CreateSolidBrush(theApp.Ctrlbk);
+		//返回设置的颜色
+		return b;
+	}
+	else if(nCtlColor==CTLCOLOR_BTN)
+	{
+		pDC->SetTextColor(theApp.Textbk);
+	}
 
+	//if(pWnd->GetDlgCtrlID()==IDC_ADD)
+	//
+	//{
+	//	pDC->SetTextColor(theApp.Textbk);
+	//}
 	return hbr;
 }
+
 

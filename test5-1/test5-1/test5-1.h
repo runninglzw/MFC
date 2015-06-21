@@ -30,8 +30,6 @@ public:
 // й╣ож
 
 	DECLARE_MESSAGE_MAP()
-//	void SetDialogBkColor(COLORREF Ctrlbk=RGB(192,192,192), COLORREF Textbk=RGB(0,0,0));
-	void SetDlgColor(COLORREF Ctrlbk=RGB(192,192,192), COLORREF Textbk=RGB(0,0,0));
 };
 
 extern Ctest51App theApp;

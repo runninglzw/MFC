@@ -1,8 +1,7 @@
-﻿生成启动时间为 2015/6/21 18:38:46。
+﻿生成启动时间为 2015/6/21 22:35:26。
      1>项目“F:\MFC学习\test5-1\test5-1\test5-1.vcxproj”在节点 2 上(Build 个目标)。
-     1>ClCompile:
-         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test5-1.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test5-1Dlg.cpp"
-         test5-1Dlg.cpp
+     1>ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /l"0x0804" /IDebug\ /nologo /fo"Debug\test5-1.res" test5-1.rc 
        Link:
          E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test5-1\Debug\test5-1.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test5-1\Debug\test5-1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test5-1\Debug\test5-1.lib" /MACHINE:X86 "Debug\test5-1.res"
          Debug\InfoDlg.obj
@@ -17,4 +16,4 @@
 
 生成成功。
 
-已用时间 00:00:13.24
+已用时间 00:00:01.76

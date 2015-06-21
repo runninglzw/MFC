@@ -91,13 +91,3 @@ BOOL Ctest51App::InitInstance()
 
 
 
-//void  Ctest51App::SetDialogBkColor(COLORREF Ctrlbk, COLORREF Textbk)
-//{
-//	//CWinApp::SetDialogBkColor(Ctrlbk,Textbk);
-//}
-
-
-//void Ctest51App::SetDlgColor(COLORREF Ctrlbk, COLORREF Textbk)
-//{
-//	CWinApp::SetDialogBkColor(Ctrlbk,Textbk);
-//}
