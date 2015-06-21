@@ -9,7 +9,7 @@
 #include "logindlg.h"
 #include "Priordlg.h"
 #include "InfoDlg.h"
-
+//extern Ctest51App theApp;
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -23,6 +23,8 @@ Ctest51Dlg::Ctest51Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(Ctest51Dlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	//从配置文件读取前景色和背景色
+	//Ctrlbk=theApp.GetProfileInt("Settings","CtrlColor",RGB(0,0,0));
 }
 
 void Ctest51Dlg::DoDataExchange(CDataExchange* pDX)
@@ -37,6 +39,8 @@ BEGIN_MESSAGE_MAP(Ctest51Dlg, CDialogEx)
 	ON_BN_CLICKED(IDRELOGIN, &Ctest51Dlg::OnBnClickedRelogin)
 	ON_BN_CLICKED(IDSEARCH, &Ctest51Dlg::OnBnClickedSearch)
 	ON_BN_CLICKED(IDINFO, &Ctest51Dlg::OnBnClickedInfo)
+	ON_BN_CLICKED(IDCOLOR, &Ctest51Dlg::OnBnClickedColor)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -49,6 +53,8 @@ BOOL Ctest51Dlg::OnInitDialog()
 	CString title=theApp.info.name;
 	SetWindowText(title);
 	GetDlgItem(IDSEARCH)->EnableWindow(theApp.info.prior);//普通用户无法添加账户
+	//设置前景色和背景色
+
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
@@ -137,3 +143,22 @@ void Ctest51Dlg::OnBnClickedInfo()
 	info.DoModal();
 	ShowWindow(SW_SHOW);
 }
+
+//extern Ctest51App theApp;
+void Ctest51Dlg::OnBnClickedColor()
+{
+	CColorDialog dlg;
+	if(IDCANCEL==dlg.DoModal())
+		return ;
+	COLORREF col=dlg.GetColor();
+	//theApp.SetDlgColor(col,col);
+}
+
+
+HBRUSH Ctest51Dlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	return hbr;
+}
+

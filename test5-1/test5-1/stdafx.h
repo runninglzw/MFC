@@ -38,6 +38,15 @@ struct user
 	char pass[20];
 	int prior;
 };
+//保存员工信息的结构体
+struct info
+{
+	int nnum;//工号
+	char strname[20];//姓名
+	char birth[20];//生日
+	char strdepartment[10];//部门
+	float pay;//工资
+};
 
 
 

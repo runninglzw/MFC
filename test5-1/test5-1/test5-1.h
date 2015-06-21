@@ -20,6 +20,8 @@ class Ctest51App : public CWinApp
 public:
 	Ctest51App();
 	user info;
+	//前景色和背景色
+	COLORREF Ctrlbk,Textbk;
 
 // 重写
 public:
@@ -28,6 +30,8 @@ public:
 // 实现
 
 	DECLARE_MESSAGE_MAP()
+//	void SetDialogBkColor(COLORREF Ctrlbk=RGB(192,192,192), COLORREF Textbk=RGB(0,0,0));
+	void SetDlgColor(COLORREF Ctrlbk=RGB(192,192,192), COLORREF Textbk=RGB(0,0,0));
 };
 
 extern Ctest51App theApp;

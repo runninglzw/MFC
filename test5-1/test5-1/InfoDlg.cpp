@@ -99,11 +99,65 @@ void CInfoDlg::OnBnClickedDel()
 //打开文件读取员工信息
 void CInfoDlg::OnBnClickedOpen()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	CFileDialog dlg(TRUE);
+	if(IDCANCEL==dlg.DoModal())
+		return;
+	//获得文件路径
+	CString filepath=dlg.GetPathName();
+	//开始将list中的数据写入文件
+	CFile file;
+	if(!file.Open(filepath,CFile::shareDenyNone|CFile::modeRead))
+	{
+		AfxMessageBox("文件打开失败！");
+		return ;
+	}
+	//删除列表中所有数据
+	p.DeleteAllItems();
+	int i=0;
+	info mes;
+	while(file.Read(&mes,sizeof(mes))>0)
+	{
+		//读取文件中的数据到list中
+		CString str;
+		str.Format("%d",mes.nnum);
+		p.InsertItem(i,str);
+		p.SetItemText(i,1,mes.strname);
+		p.SetItemText(i,2,mes.birth);
+		p.SetItemText(i,3,mes.strdepartment);
+		str.Format("%0.1f",mes.pay);
+		p.SetItemText(i,4,str);
+		i++;
+	}
 }
 
 //将员工信息保存到文件中
 void CInfoDlg::OnBnClickedSave()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	LPCSTR filter="员工信息(*.dat)|*.dat|所有文件(*.*)|*.*||";
+	CFileDialog dlg(FALSE,"dat","员工信息",OFN_OVERWRITEPROMPT,filter);//第一个参数指示以另存为的形式打开，第二个表示默认后缀名，第三个表示默认文件名，第四个表示格式，第五个表示保存类型的可选项
+	if(IDCANCEL==dlg.DoModal())
+		return;
+	//获得文件路径
+	CString filepath=dlg.GetPathName();
+	//开始将list中的数据写入文件
+	CFile file;
+	if(!file.Open(filepath,CFile::modeCreate|CFile::modeWrite))
+	{
+		AfxMessageBox("数据保存失败！");
+		return ;
+	}
+	int i=0,count=p.GetItemCount();
+	while(i<count)
+	{
+		//将list中的数据写入结构体，然后将结构体写入文件
+		info mes;
+		mes.nnum=atoi(p.GetItemText(i,0));
+		p.GetItemText(i,1,mes.strname,sizeof(mes.strname));
+		p.GetItemText(i,2,mes.birth,sizeof(mes.birth));
+		p.GetItemText(i,3,mes.strdepartment,sizeof(mes.strdepartment));
+		mes.pay=atof(p.GetItemText(i,4));
+		file.Write(&mes,sizeof(mes));
+		i++;
+	}
+	file.Close();
 }
