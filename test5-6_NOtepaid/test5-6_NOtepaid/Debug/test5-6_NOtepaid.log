@@ -1,0 +1,22 @@
+﻿生成启动时间为 2015/6/21 23:25:38。
+     1>项目“F:\MFC学习\test5-6_NOtepaid\test5-6_NOtepaid\test5-6_NOtepaid.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test5-6_NOtepaid.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test5-6_NOtepaid.cpp" "test5-6_NOtepaidDlg.cpp"
+         test5-6_NOtepaidDlg.cpp
+         正在生成代码...
+         正在编译...
+         test5-6_NOtepaid.cpp
+         正在生成代码...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /l"0x0804" /IDebug\ /nologo /fo"Debug\test5-6_NOtepaid.res" test5-6_NOtepaid.rc 
+       Link:
+         E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.lib" /MACHINE:X86 "Debug\test5-6_NOtepaid.res"
+         Debug\stdafx.obj
+         "Debug\test5-6_NOtepaid.obj"
+         "Debug\test5-6_NOtepaidDlg.obj"
+         test5-6_NOtepaid.vcxproj -> F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.exe
+     1>已完成生成项目“F:\MFC学习\test5-6_NOtepaid\test5-6_NOtepaid\test5-6_NOtepaid.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.09
