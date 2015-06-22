@@ -11,6 +11,9 @@ class Ctest56_NOtepaidDlg : public CDialogEx
 // 构造
 public:
 	Ctest56_NOtepaidDlg(CWnd* pParent = NULL);	// 标准构造函数
+	CEdit m_edit;//绑定编辑框信息
+    CFont m_font;//保存字体信息
+	CRect m_rect;//保存对话框变化前的大小
 
 // 对话框数据
 	enum { IDD = IDD_TEST56_NOTEPAID_DIALOG };
@@ -32,4 +35,8 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
+	afx_msg void OnOpen();
+	afx_msg void OnCancel();
+	afx_msg void OnFont();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
