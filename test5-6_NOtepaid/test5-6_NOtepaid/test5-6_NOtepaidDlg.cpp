@@ -19,15 +19,17 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 	enum { IDD = IDD_ABOUTBOX };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
-// 实现
+	// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOk();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -40,6 +42,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_BN_CLICKED(IDOK, &CAboutDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -68,6 +71,11 @@ BEGIN_MESSAGE_MAP(Ctest56_NOtepaidDlg, CDialogEx)
 	ON_COMMAND(IDCANCEL, &Ctest56_NOtepaidDlg::OnCancel)
 	ON_COMMAND(ID_FONT, &Ctest56_NOtepaidDlg::OnFont)
 	ON_WM_SIZE()
+	ON_COMMAND(IDABOUT, &Ctest56_NOtepaidDlg::OnAbout)
+	ON_COMMAND(ID_CUT, &Ctest56_NOtepaidDlg::OnCut)
+	ON_COMMAND(ID_COPY, &Ctest56_NOtepaidDlg::OnCopy)
+	ON_COMMAND(ID_CHEXIAO, &Ctest56_NOtepaidDlg::OnChexiao)
+	ON_COMMAND(ID_NEWFILE, &Ctest56_NOtepaidDlg::OnNewfile)
 END_MESSAGE_MAP()
 
 
@@ -78,7 +86,7 @@ BOOL Ctest56_NOtepaidDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 	m_edit.SubclassDlgItem(IDC_EDIT1,this);
 	GetClientRect(&m_rect);//获得对话框矩形区域
-	
+
 	// 将“关于...”菜单项添加到系统菜单中。
 
 	// IDM_ABOUTBOX 必须在系统命令范围内。
@@ -201,7 +209,7 @@ void Ctest56_NOtepaidDlg::OnOpen()
 	data[last]='\0';
 	SetDlgItemText(IDC_EDIT1,data);
 	delete []data;
-	
+
 }
 
 
@@ -235,7 +243,7 @@ void Ctest56_NOtepaidDlg::OnFont()
 //对话框大小变化处理事件，用来更改编辑框的大小
 void Ctest56_NOtepaidDlg::OnSize(UINT nType, int cx, int cy)
 {
-	
+
 	CWnd *edit;
 	edit=GetDlgItem(IDC_EDIT1);
 	//如果是最小化，则什么都不做
@@ -245,7 +253,7 @@ void Ctest56_NOtepaidDlg::OnSize(UINT nType, int cx, int cy)
 	{
 		CRect rect;
 		edit->GetWindowRect(&rect);//获得控件变化前的大小
-	    ScreenToClient(&rect);////将控件大小转换为在对话框中的区域坐标
+		ScreenToClient(&rect);////将控件大小转换为在对话框中的区域坐标
 		//cx/m_editWidth()为横向变化的比例,按left，right等扩大新的矩形区域
 		rect.left=rect.left*cx/m_rect.Width();
 		rect.right=rect.right*cx/m_rect.Width();
@@ -257,4 +265,62 @@ void Ctest56_NOtepaidDlg::OnSize(UINT nType, int cx, int cy)
 	//设置更改后的对话框大小给m_rect
 	GetClientRect(&m_rect);
 	CDialogEx::OnSize(nType, cx, cy);
+}
+
+//弹出关于对话框
+void Ctest56_NOtepaidDlg::OnAbout()
+{
+	CAboutDlg dlg;
+	dlg.DoModal();
+}
+
+
+void CAboutDlg::OnBnClickedOk()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDialogEx::OnOK();
+}
+
+
+void Ctest56_NOtepaidDlg::OnCut()
+{
+	m_edit.Cut();
+}
+
+
+void Ctest56_NOtepaidDlg::OnCopy()
+{
+	int start,end;
+	CString strTemp;
+	m_edit.GetSel(start,end);
+	m_edit.GetWindowText(strTemp); //获得所有字符串
+	strTemp = strTemp.Mid(start,end-start) ;//截取选中的字符串
+	//m_edit.SetWindowText()
+	if (this->OpenClipboard())   //如果能打开剪贴板  -》申请内存区-》锁定内存区-》设置内存区文本-》解除锁定内存区-》关闭剪贴板
+	{  
+		::EmptyClipboard();  //清空剪贴板，使该窗口成为剪贴板的拥有者  
+		HGLOBAL hClip;  //表示一块内存区（句柄）
+		hClip = ::GlobalAlloc(GMEM_MOVEABLE, strTemp.GetLength()+1 ); //GMEM_MOVEABLE：分配可移动的内存,在Win32中内存块在物理内存中是不可移动的,但在缺省堆中可以. 返回值是该内存对象的句柄,可使用函数 GlobalLock 将该句柄转换为一个指针.GMEM_FIXED：分配固定的内存,返回值是一个指针.第二个参数未分配的字节数
+		TCHAR *pBuf;  
+		pBuf = (TCHAR *)::GlobalLock(hClip);//锁定内存区  并获得内存指针（如果函数执行成功，返回值就是指向内存对象首字节指针，否则返回NULL）
+		lstrcpy(pBuf, strTemp);//把str拷贝到内存区域中
+		::GlobalUnlock(hClip);//解除锁定内存区  
+		::SetClipboardData(CF_TEXT, hClip);//把内存块中的文本数据发送到剪贴板  CF_UNICODETEXT为Unicode编码  CF_TEXT为文本格式
+		::CloseClipboard();//关闭剪贴板  
+	} 
+
+}
+
+//撤销
+void Ctest56_NOtepaidDlg::OnChexiao()
+{
+	m_edit.Undo();
+}
+
+//新建
+void Ctest56_NOtepaidDlg::OnNewfile()
+{
+	//CEdit* pEdit = new CEdit;
+	//pEdit->Create(ES_MULTILINE | WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER,
+	//	CRect(10, 10, 100, 100), this, 1);
 }

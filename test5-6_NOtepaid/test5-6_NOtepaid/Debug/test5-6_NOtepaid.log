@@ -1,10 +1,10 @@
-﻿生成启动时间为 2015/6/22 20:54:10。
+﻿生成启动时间为 2015/6/23 22:42:46。
      1>项目“F:\MFC学习\test5-6_NOtepaid\test5-6_NOtepaid\test5-6_NOtepaid.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test5-6_NOtepaid.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test5-6_NOtepaidDlg.cpp"
          test5-6_NOtepaidDlg.cpp
-     1>f:\mfc学习\test5-6_notepaid\test5-6_notepaid\test5-6_notepaiddlg.cpp(197): warning C4244: “初始化”: 从“ULONGLONG”转换到“unsigned int”，可能丢失数据
-     1>f:\mfc学习\test5-6_notepaid\test5-6_notepaid\test5-6_notepaiddlg.cpp(199): warning C4244: “参数”: 从“ULONGLONG”转换到“UINT”，可能丢失数据
+     1>f:\mfc学习\test5-6_notepaid\test5-6_notepaid\test5-6_notepaiddlg.cpp(205): warning C4244: “初始化”: 从“ULONGLONG”转换到“unsigned int”，可能丢失数据
+     1>f:\mfc学习\test5-6_notepaid\test5-6_notepaid\test5-6_notepaiddlg.cpp(207): warning C4244: “参数”: 从“ULONGLONG”转换到“UINT”，可能丢失数据
        Link:
          E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test5-6_NOtepaid\Debug\test5-6_NOtepaid.lib" /MACHINE:X86 "Debug\test5-6_NOtepaid.res"
          Debug\stdafx.obj
@@ -15,4 +15,4 @@
 
 生成成功。
 
-已用时间 00:00:01.48
+已用时间 00:00:04.98

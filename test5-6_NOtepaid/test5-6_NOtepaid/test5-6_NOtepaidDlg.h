@@ -39,4 +39,9 @@ public:
 	afx_msg void OnCancel();
 	afx_msg void OnFont();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnAbout();
+	afx_msg void OnCut();
+	afx_msg void OnCopy();
+	afx_msg void OnChexiao();
+	afx_msg void OnNewfile();
 };
