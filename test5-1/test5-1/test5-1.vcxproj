@@ -104,6 +104,7 @@
     <ClInclude Include="InfoDlg.h" />
     <ClInclude Include="InsertPeople.h" />
     <ClInclude Include="LoginDlg.h" />
+    <ClInclude Include="ModifyDlg.h" />
     <ClInclude Include="PriorDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -115,6 +116,7 @@
     <ClCompile Include="InfoDlg.cpp" />
     <ClCompile Include="InsertPeople.cpp" />
     <ClCompile Include="LoginDlg.cpp" />
+    <ClCompile Include="ModifyDlg.cpp" />
     <ClCompile Include="PriorDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

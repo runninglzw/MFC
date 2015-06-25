@@ -6,6 +6,7 @@
 #include "InfoDlg.h"
 #include "afxdialogex.h"
 #include "insertpeople.h"
+#include "ModifyDlg.h"
 
 
 // CInfoDlg 对话框
@@ -87,7 +88,34 @@ void CInfoDlg::OnBnClickedQuit()
 //修改员工信息
 void CInfoDlg::OnBnClickedModify()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	POSITION pos=p.GetFirstSelectedItemPosition();
+	if(p.GetSelectedCount()==0)
+	{
+		AfxMessageBox("请选中一行修改！");
+		return;
+	}
+	//获得行数
+	int sel=p.GetNextSelectedItem(pos);
+	//给修改对话框中的变量赋值，该对话框初始化时变量会给控件赋值
+	CModifyDlg dlg;
+	dlg.m_id=atoi(p.GetItemText(sel,0));
+	dlg.m_name=p.GetItemText(sel,1);
+	dlg.m_birth.ParseDateTime(p.GetItemText(sel,2));
+	dlg.m_bumen=p.GetItemText(sel,3);
+	dlg.m_pay=(float)atof(p.GetItemText(sel,4));
+	if(IDCANCEL==dlg.DoModal())
+	{
+		return;
+	}
+	//点了确定后对话框绑定的控件会赋值给变量，将变量赋值给list控件更新即可
+	CString str;
+	str.Format("%d",dlg.m_id);
+	p.SetItemText(sel,0,str);
+	p.SetItemText(sel,1,dlg.m_name);
+	p.SetItemText(sel,2,dlg.m_birth.Format(VAR_DATEVALUEONLY));//或者使用dlg.m_birth.Format("%Y%m%d")
+	p.SetItemText(sel,3,dlg.m_bumen);
+	str.Format("%0.2f",dlg.m_pay);
+	p.SetItemText(sel,4,str);
 }
 
 //删除员工信息
