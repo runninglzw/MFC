@@ -64,6 +64,7 @@ BEGIN_MESSAGE_MAP(Ctest73GDIDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_NCPAINT()
+	ON_WM_NCHITTEST()
 END_MESSAGE_MAP()
 
 
@@ -139,7 +140,24 @@ void Ctest73GDIDlg::OnPaint()
 
 		// 绘制图标
 		//dc.DrawIcon(x, y, m_hIcon);
+		//使用画笔CPen
+		CPen p1(PS_DASHDOTDOT,1,RGB(255,0,0));//第一个参数代表虚线，第二个为宽度，第三个为颜色，虚线宽度必须为1
+		//设置dc的画笔
+		dc.SelectObject(&p1);//返回值为旧的CPen类，缺省为黑色单线
+		//绘制椭圆图形
 		dc.Ellipse(rect);
+		//绘制三角形
+		CPen p2(PS_SOLID,5,RGB(0,255,0));
+		dc.SelectObject(&p2);
+		CPoint points[]={CPoint(140,40),CPoint(100,80),CPoint(180,80)};
+		dc.Polygon(points,3);
+		rect.bottom=40;
+		dc.FillSolidRect(rect,RGB(0,0,200));
+		//绘制标题
+		CString str="测试CDC类";
+		dc.SetTextColor(RGB(255,0,0));
+		dc.DrawText(str,rect,DT_CENTER|DT_VCENTER|DT_SINGLELINE);
+		//arc绘制椭圆的线（一半），chord为封闭的，连接椭圆两点
 	//}
 	//else
 	//{
@@ -169,16 +187,36 @@ void Ctest73GDIDlg::OnLButtonDown(UINT nFlags, CPoint point)
 void Ctest73GDIDlg::OnNcPaint()
 {
 	//在OnNcPaint()中CWindowDC绘图永久有效，在其他消息中只是临时的
-	CWindowDC cdc(this);
+	//CWindowDC cdc(this);
+	//CRect rect;
+	//GetWindowRect(rect);
+	////转化为非客户区坐标系
+	//rect.OffsetRect(-rect.left,-rect.top);//横向移动屏幕坐标系的x和纵向移动屏幕坐标系的y值
+	//rect.top-=20;
+	//cdc.FillSolidRect(rect,RGB(255,0,0));//填充矩形颜色为红色
+	////cdc.Rectangle(rect);
+	////或者使用如下方法转换为非客户区坐标系
+	////cdc.Rectangle(0,0,rect.Width(),rect.Height());
+	//// TODO: 在此处添加消息处理程序代码
+	//// 不为绘图消息调用 CDialogEx::OnNcPaint()
+}
+
+//拖动系统标题栏才可以拖动，这里将客户区绘制的标题栏当成系统标题栏
+LRESULT Ctest73GDIDlg::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	UINT test=CDialogEx::OnNcHitTest(point);
+	//获取标题框大小
 	CRect rect;
-	GetWindowRect(rect);
-	//转化为非客户区坐标系
-	rect.OffsetRect(-rect.left,-rect.top);//横向移动屏幕坐标系的x和纵向移动屏幕坐标系的y值
-	rect.top-=20;
-	cdc.FillSolidRect(rect,RGB(255,0,0));//填充矩形颜色为红色
-	//cdc.Rectangle(rect);
-	//或者使用如下方法转换为非客户区坐标系
-	//cdc.Rectangle(0,0,rect.Width(),rect.Height());
-	// TODO: 在此处添加消息处理程序代码
-	// 不为绘图消息调用 CDialogEx::OnNcPaint()
+	GetClientRect(rect);
+	rect.bottom=40;
+	//将拖动的点转化为客户区坐标系
+	ScreenToClient(&point);
+	//判断拖动的点是否在标题区
+	if(rect.PtInRect(point))
+	{
+		if(HTCLIENT==test)//如果是客户区
+			test=HTCAPTION;//变为标题栏，只有标题栏才可以拖动
+	}
+	return test;
 }
