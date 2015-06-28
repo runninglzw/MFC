@@ -144,14 +144,23 @@ void Ctest73GDIDlg::OnPaint()
 		CPen p1(PS_DASHDOTDOT,1,RGB(255,0,0));//第一个参数代表虚线，第二个为宽度，第三个为颜色，虚线宽度必须为1
 		//设置dc的画笔
 		dc.SelectObject(&p1);//返回值为旧的CPen类，缺省为黑色单线
+		//获取系统画刷
+		CBrush cb;
+		cb.CreateSysColorBrush(COLOR_INFOTEXT);
+		//设置为系统颜色画刷
+		dc.SelectObject(&cb);
 		//绘制椭圆图形
 		dc.Ellipse(rect);
 		//绘制三角形
 		CPen p2(PS_SOLID,5,RGB(0,255,0));
 		dc.SelectObject(&p2);
+		//绘制画刷
+		CBrush brush(HS_DIAGCROSS,RGB(255,0,155));//第一个参数为格式，第二个为颜色
+		//dc.SelectObject(&brush);
 		CPoint points[]={CPoint(140,40),CPoint(100,80),CPoint(180,80)};
 		dc.Polygon(points,3);
 		rect.bottom=40;
+		//填充标题栏矩形的颜色
 		dc.FillSolidRect(rect,RGB(0,0,200));
 		//绘制标题
 		CString str="测试CDC类";
