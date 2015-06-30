@@ -6,6 +6,7 @@
 #include "test7-3(GDI).h"
 #include "test7-3(GDI)Dlg.h"
 #include "afxdialogex.h"
+#include "Resource.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -140,6 +141,7 @@ void Ctest73GDIDlg::OnPaint()
 
 		// 绘制图标
 		//dc.DrawIcon(x, y, m_hIcon);
+
 		//使用画笔CPen
 		CPen p1(PS_DASHDOTDOT,1,RGB(255,0,0));//第一个参数代表虚线，第二个为宽度，第三个为颜色，虚线宽度必须为1
 		//设置dc的画笔
@@ -162,6 +164,26 @@ void Ctest73GDIDlg::OnPaint()
 		rect.bottom=40;
 		//填充标题栏矩形的颜色
 		dc.FillSolidRect(rect,RGB(0,0,200));
+
+				//平铺Bitmap步骤：1.加载Bitmap2.申请一个内存区域3.将内存区域和Bitmap绑定4.将绑定好的绘制在对话框中
+		//第一步
+		CBitmap bt;
+		bt.LoadBitmap(IDB_BITMAP1);
+		//获得BITMAP结构体，包含Bitmap图像的信息（高度和宽度等）
+		BITMAP bitmap;
+		bt.GetBitmap(&bitmap);
+		//第二步
+		CDC cdc;
+		cdc.CreateCompatibleDC(&dc);
+		//第三步
+		cdc.SelectObject(&bt);
+		//第四步
+		dc.BitBlt(300,40,bitmap.bmWidth,bitmap.bmHeight,&cdc,0,0,SRCCOPY);
+		//拉伸或者扩大位图
+		cdc.SetStretchBltMode(HALFTONE);
+		dc.StretchBlt(300,200,bitmap.bmWidth/2,bitmap.bmHeight/2,&cdc,0,0,bitmap.bmWidth,bitmap.bmHeight,SRCCOPY);
+
+
 		//绘制标题
 		CString str="测试CDC类";
 		dc.SetTextColor(RGB(255,0,0));
