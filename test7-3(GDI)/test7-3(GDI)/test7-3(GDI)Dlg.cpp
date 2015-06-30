@@ -165,7 +165,7 @@ void Ctest73GDIDlg::OnPaint()
 		//填充标题栏矩形的颜色
 		dc.FillSolidRect(rect,RGB(0,0,200));
 
-				//平铺Bitmap步骤：1.加载Bitmap2.申请一个内存区域3.将内存区域和Bitmap绑定4.将绑定好的绘制在对话框中
+		//平铺Bitmap步骤：1.加载Bitmap2.申请一个内存区域3.将内存区域和Bitmap绑定4.将绑定好的绘制在对话框中
 		//第一步
 		CBitmap bt;
 		bt.LoadBitmap(IDB_BITMAP1);
@@ -177,9 +177,16 @@ void Ctest73GDIDlg::OnPaint()
 		cdc.CreateCompatibleDC(&dc);
 		//第三步
 		cdc.SelectObject(&bt);
+		//使用椭圆区域绘制
+		CRgn rgn;
+		rgn.CreateEllipticRgn(300,40,300+bitmap.bmWidth,40+bitmap.bmHeight);
+		dc.SelectObject(&rgn);
 		//第四步
 		dc.BitBlt(300,40,bitmap.bmWidth,bitmap.bmHeight,&cdc,0,0,SRCCOPY);
 		//拉伸或者扩大位图
+		CRgn rgn2;
+		rgn2.CreateRectRgn(300,200,300+bitmap.bmWidth/2,200+bitmap.bmHeight/2);//由于先前绑定了一个椭圆区域，想要压缩或者扩展必须新绑定一个矩形区域，和压缩后大小一致
+		dc.SelectObject(&rgn2);
 		cdc.SetStretchBltMode(HALFTONE);
 		dc.StretchBlt(300,200,bitmap.bmWidth/2,bitmap.bmHeight/2,&cdc,0,0,bitmap.bmWidth,bitmap.bmHeight,SRCCOPY);
 
