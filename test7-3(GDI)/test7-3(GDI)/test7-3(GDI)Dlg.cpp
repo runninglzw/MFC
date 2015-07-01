@@ -7,6 +7,7 @@
 #include "test7-3(GDI)Dlg.h"
 #include "afxdialogex.h"
 #include "Resource.h"
+#include "MemDC.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +19,7 @@
 class CAboutDlg : public CDialogEx
 {
 public:
+	CMemoryDC m_dc;
 	CAboutDlg();
 
 // 对话框数据
@@ -29,6 +31,10 @@ public:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOk();
+	virtual BOOL OnInitDialog();
+	afx_msg void OnPaint();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -41,6 +47,8 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_BN_CLICKED(IDOK, &CAboutDlg::OnBnClickedOk)
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -66,6 +74,7 @@ BEGIN_MESSAGE_MAP(Ctest73GDIDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_NCPAINT()
 	ON_WM_NCHITTEST()
+	ON_BN_CLICKED(IDADOUT, &Ctest73GDIDlg::OnBnClickedAdout)
 END_MESSAGE_MAP()
 
 
@@ -74,7 +83,6 @@ END_MESSAGE_MAP()
 BOOL Ctest73GDIDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
 	// 将“关于...”菜单项添加到系统菜单中。
 
 	// IDM_ABOUTBOX 必须在系统命令范围内。
@@ -257,4 +265,37 @@ LRESULT Ctest73GDIDlg::OnNcHitTest(CPoint point)
 			test=HTCAPTION;//变为标题栏，只有标题栏才可以拖动
 	}
 	return test;
+}
+
+//关于对话框，（加载进程外的位图）
+void Ctest73GDIDlg::OnBnClickedAdout()
+{
+	CAboutDlg dlg;
+	dlg.DoModal();
+}
+
+
+void CAboutDlg::OnBnClickedOk()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDialogEx::OnOK();
+}
+
+
+BOOL CAboutDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	return TRUE;
+}
+
+
+void CAboutDlg::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+	//CMemoryDC m_dc;
+	m_dc.LoadmyBitmap("C:\\Users\\liuzhenwei\\Desktop\\图标\\myapp.bmp",&dc);
+	CRect rect;
+	GetClientRect(rect);
+	dc.StretchBlt(0,0,rect.Width(),rect.Height(),&m_dc,0,0,rect.Width(),rect.Height(),SRCCOPY);
 }

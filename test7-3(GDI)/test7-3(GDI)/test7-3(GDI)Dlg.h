@@ -3,13 +3,14 @@
 //
 
 #pragma once
-
+#include "MemDC.h"
 
 // Ctest73GDIDlg 对话框
 class Ctest73GDIDlg : public CDialogEx
 {
 // 构造
 public:
+	
 	Ctest73GDIDlg(CWnd* pParent = NULL);	// 标准构造函数
 
 // 对话框数据
@@ -33,4 +34,5 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnNcPaint();
 	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnBnClickedAdout();
 };
