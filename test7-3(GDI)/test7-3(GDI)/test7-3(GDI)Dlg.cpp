@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(Ctest73GDIDlg, CDialogEx)
 	ON_WM_NCPAINT()
 	ON_WM_NCHITTEST()
 	ON_BN_CLICKED(IDADOUT, &Ctest73GDIDlg::OnBnClickedAdout)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -107,7 +108,7 @@ BOOL Ctest73GDIDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-
+	SetTimer(0,500,NULL);
 	// TODO: 在此添加额外的初始化代码
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -298,4 +299,20 @@ void CAboutDlg::OnPaint()
 	CRect rect;
 	GetClientRect(rect);
 	dc.StretchBlt(0,0,rect.Width(),rect.Height(),&m_dc,0,0,rect.Width(),rect.Height(),SRCCOPY);
+}
+
+//处理动态图
+void Ctest73GDIDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	static int i=1;
+	CString str;
+	str.Format("F:\\MFC学习\\test7-3(GDI)\\test7-3(GDI)\\res\\%d.bmp",i);
+	CClientDC dc(this);
+	CMemoryDC m_dc;
+	m_dc.LoadmyBitmap(str);
+	dc.BitBlt(0,0,m_dc.GetWidth(),m_dc.GetHeight(),&m_dc,0,0,SRCCOPY);
+	i++;
+	if(i>2)
+		i=1;
+	CDialogEx::OnTimer(nIDEvent);
 }

@@ -35,4 +35,5 @@ public:
 	afx_msg void OnNcPaint();
 	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnBnClickedAdout();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
