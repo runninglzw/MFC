@@ -298,7 +298,9 @@ void CAboutDlg::OnPaint()
 	m_dc.LoadmyBitmap("C:\\Users\\liuzhenwei\\Desktop\\图标\\myapp.bmp",&dc);
 	CRect rect;
 	GetClientRect(rect);
+	//m_dc.BitTrans(0,0,m_dc.GetWidth(),m_dc.GetHeight(),&dc,0,0,RGB(255,0,0));//红色为透明颜色
 	dc.StretchBlt(0,0,rect.Width(),rect.Height(),&m_dc,0,0,rect.Width(),rect.Height(),SRCCOPY);
+	
 }
 
 //处理动态图
