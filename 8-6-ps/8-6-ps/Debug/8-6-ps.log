@@ -1,16 +1,8 @@
-﻿生成启动时间为 2015/7/15 23:12:45。
+﻿生成启动时间为 2015/7/16 21:56:11。
      1>项目“F:\MFC学习\8-6-ps\8-6-ps\8-6-ps.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\8-6-ps.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "8-6-ps.cpp" "8-6-psView.cpp" Elli.cpp Layer.cpp Line.cpp
-         Line.cpp
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\8-6-ps.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Elli.cpp
          Elli.cpp
-         8-6-psView.cpp
-         正在生成代码...
-         正在编译...
-         8-6-ps.cpp
-         正在生成代码...
-         正在跳过...(未检测到相关更改)
-         Layer.cpp
        Link:
          E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\8-6-ps\Debug\8-6-ps.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\8-6-ps\Debug\8-6-ps.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\8-6-ps\Debug\8-6-ps.lib" /MACHINE:X86 "Debug\8-6-ps.res"
          "Debug\8-6-ps.obj"
@@ -26,4 +18,4 @@
 
 生成成功。
 
-已用时间 00:00:06.04
+已用时间 00:00:01.35

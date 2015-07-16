@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CMy86psView, CView)
 	ON_UPDATE_COMMAND_UI(ID_ELLI, &CMy86psView::OnUpdateElli)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CMy86psView 构造/析构
@@ -67,7 +68,7 @@ void CMy86psView::OnDraw(CDC* pDC)
 		return;
 
 	//绘制图形
-	int i=0,count=m_list.GetSize();
+	int i=0,count=m_list.GetCount();
 	CLayer *layer=NULL;
 	//循环绘制lisi中的图形
 	while(i<count)
@@ -179,8 +180,7 @@ void CMy86psView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CMy86psView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	int count=m_list.GetSize();
+	int count=m_list.GetCount();
 	if(!count)
 		return;
 	//找到list中的最后的绘图类
@@ -190,3 +190,18 @@ void CMy86psView::OnLButtonUp(UINT nFlags, CPoint point)
 	Invalidate();
 	CView::OnLButtonUp(nFlags, point);
 }
+
+
+void CMy86psView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	int count=m_list.GetCount();
+	if(!count)
+		return;
+	//临时绘图对象dc
+	CClientDC dc(this);
+	CLayer *layer=m_list[count-1];
+	layer->OnMouseMove(nFlags,point,&dc);
+
+	CView::OnMouseMove(nFlags, point);
+}
+//添加选中状态：直线判断点到直线的距离，曲线判断每一个点和当前鼠标的point是否相等，椭圆判断point是否在该椭圆中

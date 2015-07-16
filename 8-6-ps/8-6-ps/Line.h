@@ -8,6 +8,7 @@ class CLine :
 	void ONLButtonDown(UINT flags, CPoint point);
 	void OnLButtonUp(UINT nFlags, CPoint point);
 	void OnDraw(CDC* pDC);
+	void OnMouseMove(UINT nflags, CPoint point,CDC *pdc);
 public:
 	CLine(void);
 	~CLine(void);

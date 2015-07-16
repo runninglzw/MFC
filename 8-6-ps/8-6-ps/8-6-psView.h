@@ -9,7 +9,8 @@ class CMy86psView : public CView
 {
 protected: // 仅从序列化创建
 	int select;
-	CArray<CLayer*,CLayer*> m_list;
+	//int count;
+	CArray<CLayer*> m_list;
 	CMy86psView();
 	DECLARE_DYNCREATE(CMy86psView)
 
@@ -51,6 +52,7 @@ public:
 	afx_msg void OnUpdateElli(CCmdUI *pCmdUI);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // 8-6-psView.cpp 中的调试版本
