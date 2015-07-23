@@ -1,0 +1,16 @@
+﻿生成启动时间为 2015/7/23 18:27:39。
+     1>项目“F:\MFC学习\test9-1\test9-1\test9-1.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test9-1.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test9-1Dlg.cpp"
+         test9-1Dlg.cpp
+       Link:
+         E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test9-1\Debug\test9-1.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test9-1\Debug\test9-1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test9-1\Debug\test9-1.lib" /MACHINE:X86 "Debug\test9-1.res"
+         Debug\stdafx.obj
+         "Debug\test9-1.obj"
+         "Debug\test9-1Dlg.obj"
+         test9-1.vcxproj -> F:\MFC学习\test9-1\Debug\test9-1.exe
+     1>已完成生成项目“F:\MFC学习\test9-1\test9-1\test9-1.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.66
