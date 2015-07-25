@@ -22,10 +22,10 @@ Ctest92Dlg::Ctest92Dlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void Ctest92Dlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-}
+//void Ctest92Dlg::DoDataExchange(CDataExchange* pDX)
+//{
+//	CDialogEx::DoDataExchange(pDX);
+//}
 
 BEGIN_MESSAGE_MAP(Ctest92Dlg, CDialogEx)
 	ON_WM_PAINT()
@@ -109,6 +109,8 @@ HCURSOR Ctest92Dlg::OnQueryDragIcon()
 void Ctest92Dlg::OnBnClickedOk()
 {
 	m_p1.UpdateData();
+	m_p2.UpdateData();
+	m_p3.UpdateData();
 	EndDialog(IDOK);
 	//CDialogEx::OnOK();
 }
@@ -142,4 +144,12 @@ void Ctest92Dlg::SelectPage()
 	//设置上一步和下一步按钮的可见性
 	GetDlgItem(IDBEFOR)->EnableWindow(m_sel!=0);//上一步是0则隐藏，其他都显示
 	GetDlgItem(IDNEXT)->EnableWindow(m_sel!=2);//下一步是2则隐藏，其他都显示
+}
+
+
+void Ctest92Dlg::DoDataExchange(CDataExchange* pDX)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+
+	CDialogEx::DoDataExchange(pDX);
 }

@@ -70,4 +70,6 @@ void CMainDlg::OnBnClickedAdd()
 		return;
 	int i=m_list.GetItemCount();
 	m_list.InsertItem(i,dlg.m_p1.m_id);
+	m_list.SetItemText(i,1,dlg.m_p2.m_name);
+	m_list.SetItemText(i,2,dlg.m_p3.m_sex);
 }

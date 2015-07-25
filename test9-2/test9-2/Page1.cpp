@@ -22,11 +22,14 @@ CPage1::~CPage1()
 {
 }
 
-void CPage1::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-	DDX_Text(pDX, IDC_ID, m_id);
-}
+//void CPage1::DoDataExchange(CDataExchange* pDX)
+//{
+//	CDialogEx::DoDataExchange(pDX);
+//	//  DDX_Text(pDX, IDC_ID, m_id);
+//	//  DDX_Text(pDX, IDC_ID, m_id);
+//	//  DDX_Control(pDX, IDC_ID, m_id);
+//	DDX_Text(pDX, IDC_ID, m_id);
+//}
 
 
 BEGIN_MESSAGE_MAP(CPage1, CDialogEx)
@@ -49,4 +52,13 @@ void CPage1::OnBnClickedCancel()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//CDialogEx::OnCancel();
+}
+
+
+void CPage1::DoDataExchange(CDataExchange* pDX)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+
+	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_ID, m_id);
 }

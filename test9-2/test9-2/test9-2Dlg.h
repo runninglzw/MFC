@@ -25,7 +25,7 @@ public:
 	enum { IDD = IDD_TEST92_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
+//	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
 
 // 实现
@@ -42,4 +42,5 @@ public:
 	afx_msg void OnBnClickedNext();
 	afx_msg void OnBnClickedCancel();
 	afx_msg void OnBnClickedBefor();
+	virtual void DoDataExchange(CDataExchange* pDX);
 };
