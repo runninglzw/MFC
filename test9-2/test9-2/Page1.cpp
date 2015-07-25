@@ -43,14 +43,16 @@ END_MESSAGE_MAP()
 
 void CPage1::OnBnClickedOk()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	//回车相当于点击父窗口的下一步，在这之前子窗口必须获得焦点
+	GetParent()->PostMessage(WM_COMMAND,IDNEXT);
 	//CDialogEx::OnOK();
 }
 
 
 void CPage1::OnBnClickedCancel()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	// 按Esc相当于点击父窗口的取消按钮，在此之前子窗口必须获得焦点
+	GetParent()->PostMessage(WM_COMMAND,IDCANCEL);
 	//CDialogEx::OnCancel();
 }
 

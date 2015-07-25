@@ -1,11 +1,12 @@
-﻿生成启动时间为 2015/7/25 15:32:26。
+﻿生成启动时间为 2015/7/25 18:05:24。
      1>项目“F:\MFC学习\test9-2\test9-2\test9-2.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test9-2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test9-2Dlg.cpp"
-         test9-2Dlg.cpp
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test9-2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt MainDlg.cpp
+         MainDlg.cpp
        Link:
          E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test9-2\Debug\test9-2.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test9-2\Debug\test9-2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test9-2\Debug\test9-2.lib" /MACHINE:X86 "Debug\test9-2.res"
          Debug\MainDlg.obj
+         Debug\ModDlg.obj
          Debug\Page1.obj
          Debug\Page2.obj
          Debug\Page3.obj
@@ -17,4 +18,4 @@
 
 生成成功。
 
-已用时间 00:00:01.82
+已用时间 00:00:01.69

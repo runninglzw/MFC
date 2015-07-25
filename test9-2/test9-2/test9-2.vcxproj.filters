@@ -45,6 +45,9 @@
     <ClInclude Include="MainDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ModDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test9-2.cpp">
@@ -66,6 +69,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MainDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ModDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

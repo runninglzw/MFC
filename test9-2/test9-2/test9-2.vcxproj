@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainDlg.h" />
+    <ClInclude Include="ModDlg.h" />
     <ClInclude Include="Page1.h" />
     <ClInclude Include="Page2.h" />
     <ClInclude Include="Page3.h" />
@@ -113,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainDlg.cpp" />
+    <ClCompile Include="ModDlg.cpp" />
     <ClCompile Include="Page1.cpp" />
     <ClCompile Include="Page2.cpp" />
     <ClCompile Include="Page3.cpp" />
