@@ -1,0 +1,23 @@
+﻿生成启动时间为 2015/8/1 21:15:16。
+     1>项目“F:\MFC学习\test9-4\test9-4\test9-4.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test9-4.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Cpage1.cpp Cpage2.cpp Cpage3.cpp
+         Cpage3.cpp
+         Cpage2.cpp
+         Cpage1.cpp
+         正在生成代码...
+       Link:
+         E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test9-4\Debug\test9-4.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test9-4\Debug\test9-4.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test9-4\Debug\test9-4.lib" /MACHINE:X86 "Debug\test9-2.res"
+         "Debug\test9-4.res"
+         Debug\Cpage1.obj
+         Debug\Cpage2.obj
+         Debug\Cpage3.obj
+         Debug\stdafx.obj
+         "Debug\test9-4.obj"
+         "Debug\test9-4Dlg.obj"
+         test9-4.vcxproj -> F:\MFC学习\test9-4\Debug\test9-4.exe
+     1>已完成生成项目“F:\MFC学习\test9-4\test9-4\test9-4.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.63
