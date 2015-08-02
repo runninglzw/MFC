@@ -13,6 +13,7 @@ IMPLEMENT_DYNAMIC(Cpage3, CPropertyPage)
 
 Cpage3::Cpage3()
 	: CPropertyPage(Cpage3::IDD)
+	, m_sex(_T(""))
 {
 
 }
@@ -24,6 +25,7 @@ Cpage3::~Cpage3()
 void Cpage3::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_SEX, m_sex);
 }
 
 

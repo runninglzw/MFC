@@ -32,4 +32,6 @@ protected:
 public:
 	CListCtrl m_list;
 	afx_msg void OnBnClickedAdd();
+	afx_msg void OnBnClickedAdd2();
+	afx_msg void OnDblclkList1(NMHDR *pNMHDR, LRESULT *pResult);
 };

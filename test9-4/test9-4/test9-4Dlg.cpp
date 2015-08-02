@@ -35,6 +35,10 @@ BEGIN_MESSAGE_MAP(Ctest94Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDADD, &Ctest94Dlg::OnBnClickedAdd)
+	ON_BN_CLICKED(IDADD2, &Ctest94Dlg::OnBnClickedAdd2)
+//	ON_NOTIFY(HDN_DIVIDERDBLCLICK, 0, &Ctest94Dlg::OnHdnDividerdblclickList1)
+//	ON_NOTIFY(HDN_ITEMDBLCLICK, 0, &Ctest94Dlg::OnHdnItemdblclickList1)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &Ctest94Dlg::OnDblclkList1)
 END_MESSAGE_MAP()
 
 
@@ -104,8 +108,50 @@ void Ctest94Dlg::OnBnClickedAdd()
 	sheet.AddPage(&p2);
 	sheet.AddPage(&p3);
 	sheet.SetWizardMode();
-	sheet.DoModal();
+	if(IDCANCEL==sheet.DoModal())
+		return;
+	int count=m_list.GetItemCount();
+	m_list.InsertItem(count,p1.m_id);
+	m_list.SetItemText(count,1,p2.m_name);
+	m_list.SetItemText(count,2,p3.m_sex);
 	
 
 	// TODO: 在此添加控件通知处理程序代码
+}
+
+//修改
+void Ctest94Dlg::OnBnClickedAdd2()
+{
+
+	if(!m_list.GetSelectedCount())
+	{
+		AfxMessageBox("请选中一行!");
+		return;
+	}
+	CPropertySheet sheet("用户资料修改");
+	Cpage1 p1;
+	Cpage2 p2;
+	Cpage3 p3;
+	sheet.AddPage(&p1);
+	sheet.AddPage(&p2);
+	sheet.AddPage(&p3);
+	int select=m_list.GetSelectionMark();
+	p1.m_id=m_list.GetItemText(select,0);
+	p2.m_name=m_list.GetItemText(select,1);
+	p3.m_sex=m_list.GetItemText(select,2);
+	if(IDCANCEL==sheet.DoModal())
+		return;
+	m_list.SetItemText(select,0,p1.m_id);
+	m_list.SetItemText(select,1,p2.m_name);
+	m_list.SetItemText(select,2,p3.m_sex);
+}
+
+
+
+
+//双击list时候响应
+void Ctest94Dlg::OnDblclkList1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	OnBnClickedAdd2();
+	*pResult = 0;
 }

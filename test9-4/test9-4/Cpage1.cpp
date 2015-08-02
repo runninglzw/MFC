@@ -13,6 +13,7 @@ IMPLEMENT_DYNAMIC(Cpage1, CPropertyPage)
 
 Cpage1::Cpage1()
 	: CPropertyPage(Cpage1::IDD)
+	, m_id(_T(""))
 {
 
 }
@@ -24,6 +25,7 @@ Cpage1::~Cpage1()
 void Cpage1::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_ID, m_id);
 }
 
 
