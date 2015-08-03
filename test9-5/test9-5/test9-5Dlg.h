@@ -5,7 +5,12 @@
 #pragma once
 #include "afxcmn.h"
 
-
+struct Info
+{
+	int id;
+	char name[20];
+	double pay;
+};
 // Ctest95Dlg 对话框
 class Ctest95Dlg : public CDialogEx
 {
@@ -34,8 +39,13 @@ public:
 	afx_msg void OnBnClickedCancel();
 	CListCtrl m_list;
 	CTreeCtrl m_tree;
+
+	bool changed;//部门的员工信息是否被修改
 	afx_msg void OnSelchangedTree(NMHDR *pNMHDR, LRESULT *pResult);
 	CString GetPath(HTREEITEM item);
+	int GetDepth(HTREEITEM item);
+	void Save();
+	void Load();
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 };

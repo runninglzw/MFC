@@ -19,6 +19,7 @@
 Ctest95Dlg::Ctest95Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(Ctest95Dlg::IDD, pParent)
 {
+	changed=false;
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
@@ -132,24 +133,114 @@ CString Ctest95Dlg::GetPath(HTREEITEM item)
 	}
 	return str;
 }
+//获得深度
+int Ctest95Dlg::GetDepth(HTREEITEM item)
+{
+	int res=0;
+	while(item)
+	{
+		item=m_tree.GetParentItem(item);
+		res++;
+	}
+	return res;
+}
 //更改选中项
 void Ctest95Dlg::OnSelchangedTree(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	if(changed)
+	{
+		if(IDYES==AfxMessageBox("是否保存？",MB_YESNO))
+			Save();
+	}
+	changed=false;
 	HTREEITEM item=pNMTreeView->itemNew.hItem;//获得当前结点
 	CString str=GetPath(item);
+	int depth=GetDepth(item);
+	//如果是叶子节点，添加和删除按钮才能生效
+	GetDlgItem(IDC_ADD)->EnableWindow(3==depth);
+	GetDlgItem(IDC_DEL)->EnableWindow(3==depth);
 	SetDlgItemText(IDC_TEXT,str);
+	Load();
 	*pResult = 0;
 }
 
 //添加
 void Ctest95Dlg::OnBnClickedButton1()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	int count=m_list.GetItemCount();
+	int i=0;
+	CString str;
+	//获得工号
+	GetDlgItemText(IDC_ID,str);
+	//判断工号是否存在
+	while(i<count)
+	{
+		if(str==m_list.GetItemText(i,0))
+		{
+			AfxMessageBox("已经存在该工号！");
+			return ;
+		}
+		i++;
+	}
+	//如果工号不存在则插入
+	m_list.InsertItem(i,str);
+	GetDlgItemText(IDC_NAME,str);
+	m_list.SetItemText(i,1,str);
+	GetDlgItemText(IDC_PAY,str);
+	m_list.SetItemText(i,2,str);
+	changed=true;
+
 }
 
 //删除
 void Ctest95Dlg::OnBnClickedButton2()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	changed=true;
+}
+void Ctest95Dlg::Save()
+{
+	CString path;
+	GetDlgItemText(IDC_TEXT,path);
+	CFile file;
+	if(!file.Open(path+"mem.dat",CFile::modeCreate|CFile::modeWrite))
+	{
+		AfxMessageBox("文件保存失败！");
+		return ;
+	}
+	Info temp;
+	int i=0,count=m_list.GetItemCount();
+	while(i<count)
+	{
+		temp.id=atoi(m_list.GetItemText(i,0));
+		strcpy_s(temp.name,m_list.GetItemText(i,1));
+		temp.pay= atof(m_list.GetItemText(i,2));
+		file.Write(&temp,sizeof(temp));
+		i++;
+	}
+}
+void Ctest95Dlg::Load()
+{
+	m_list.DeleteAllItems();
+	CString path;
+	GetDlgItemText(IDC_TEXT,path);
+	CFile file;
+	if(!file.Open(path+"mem.dat",CFile::modeRead))
+	{
+		AfxMessageBox("文件打开失败！");
+		return ;
+	}
+	Info temp;
+	CString str;
+	int i=0;
+	while(file.Read(&temp,sizeof(temp))   ==sizeof(temp))
+	{
+		str.Format("%d",temp.id);
+		m_list.InsertItem(i,str);
+		m_list.SetItemText(i,1,temp.name);
+		str.Format("%0.2lf",temp.pay);
+		m_list.SetItemText(i,2,str);
+		i++;
+	}
+
 }
