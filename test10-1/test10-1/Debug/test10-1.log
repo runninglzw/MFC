@@ -1,0 +1,16 @@
+﻿生成启动时间为 2015/8/4 21:48:52。
+     1>项目“F:\MFC学习\test10-1\test10-1\test10-1.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test10-1.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "test10-1Dlg.cpp"
+         test10-1Dlg.cpp
+       Link:
+         E:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\MFC学习\test10-1\Debug\test10-1.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:E:\VS2012\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"F:\MFC学习\test10-1\Debug\test10-1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\MFC学习\test10-1\Debug\test10-1.lib" /MACHINE:X86 "Debug\test10-1.res"
+         Debug\stdafx.obj
+         "Debug\test10-1.obj"
+         "Debug\test10-1Dlg.obj"
+         test10-1.vcxproj -> F:\MFC学习\test10-1\Debug\test10-1.exe
+     1>已完成生成项目“F:\MFC学习\test10-1\test10-1\test10-1.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.18
