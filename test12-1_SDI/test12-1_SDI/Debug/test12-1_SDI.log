@@ -1,0 +1,17 @@
+﻿生成启动时间为 2015/8/5 20:24:05。
+     1>项目“F:\MFC学习\test12-1_SDI\test12-1_SDI\test12-1_SDI.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VS2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\test12-1_SDI.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt MainFrm.cpp MainView.cpp "test12-1_SDI.cpp"
+         MainView.cpp
+     1>f:\mfc学习\test12-1_sdi\test12-1_sdi\adddlg.h(14): error C2065: “IDD_LURU”: 未声明的标识符
+         正在生成代码...
+         正在编译...
+         MainFrm.cpp
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
+         test12-1_SDI.cpp
+     1>已完成生成项目“F:\MFC学习\test12-1_SDI\test12-1_SDI\test12-1_SDI.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.06
