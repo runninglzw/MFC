@@ -38,7 +38,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	// TODO: 在此添加成员初始化代码
+	m_View=NULL;
 }
 
 CMainFrame::~CMainFrame()
@@ -52,7 +52,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//创建视图
 	CCreateContext cc;
 	cc.m_pNewViewClass=RUNTIME_CLASS(CMainView);
-	m_View=(CMainView *)CreateView(&cc);
+	CreateView(&cc);
 	// 创建一个视图以占用框架的工作区
 	//if (!m_wndView.Create(NULL, NULL, AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0), this, AFX_IDW_PANE_FIRST, NULL))
 	//{

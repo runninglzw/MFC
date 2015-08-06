@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Resource.h"
 // CAddDlg ¶Ô»°¿ò
 
 class CAddDlg : public CDialogEx

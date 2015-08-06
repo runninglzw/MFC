@@ -1,6 +1,8 @@
 #include "stdafx.h"
+#include "Resource.h"
 #include "MainView.h"
 #include "AddDlg.h"
+#include "MainFrm.h"
 
 
 CMainView::CMainView(void)
@@ -44,13 +46,21 @@ void CMainView::OnEditAdd()
 }
 
 
-//void CMainView::OnEditDel()
-//{
-//	// TODO: 在此添加命令处理程序代码
-//}
+void CMainView::OnEditDel()
+{
+	// TODO: 在此添加命令处理程序代码
+}
 
 
-//void CMainView::OnEditMod()
+void CMainView::OnEditMod()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+//void CMainView::OnInitialUpdate()
 //{
-//	// TODO: 在此添加命令处理程序代码
+//	CListView::OnInitialUpdate();
+//
+//	 TODO: 在此添加专用代码和/或调用基类
 //}

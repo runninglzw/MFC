@@ -42,22 +42,6 @@ Ctest121_SDIApp theApp;
 
 BOOL Ctest121_SDIApp::InitInstance()
 {
-	CWinApp::InitInstance();
-
-
-	EnableTaskbarInteraction(FALSE);
-
-	// 使用 RichEdit 控件需要  AfxInitRichEdit2()	
-	// AfxInitRichEdit2();
-
-	// 标准初始化
-	// 如果未使用这些功能并希望减小
-	// 最终可执行文件的大小，则应移除下列
-	// 不需要的特定初始化例程
-	// 更改用于存储设置的注册表项
-	// TODO: 应适当修改该字符串，
-	// 例如修改为公司或组织名
-	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
 
 
 	// 若要创建主窗口，此代码将创建新的框架窗口
@@ -70,6 +54,19 @@ BOOL Ctest121_SDIApp::InitInstance()
 	pFrame->LoadFrame(IDR_MAINFRAME,
 		WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL,
 		NULL);
+
+
+	//自己创建框架
+	//HICON icon=LoadIcon(IDR_MAINFRAME);
+	////注册窗口
+	//LPCSTR szclass=AfxRegisterWndClass(CS_DBLCLKS|CS_HREDRAW|CS_VREDRAW,NULL,NULL,icon);
+	////使用本框架创建窗口
+	//pFrame->Create(szclass,"员工信息管理",WS_OVERLAPPEDWINDOW,CFrameWnd::rectDefault,NULL,MAKEINTRESOURCE(IDR_MAINFRAME));
+	//pFrame->SendMessageToDescendants(WM_INITIALUPDATE,0,0,TRUE,TRUE);
+	//pFrame->SetIcon(icon,FALSE);
+
+
+
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	pFrame->ShowWindow(SW_SHOW);
 	pFrame->UpdateWindow();
@@ -111,6 +108,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 }
+
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()

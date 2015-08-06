@@ -3,7 +3,6 @@
 //
 
 #pragma once
-#include "ChildView.h"
 #include "MainView.h"
 
 class CMainFrame : public CFrameWnd
@@ -36,7 +35,7 @@ public:
 protected:  // 控件条嵌入成员
 	CToolBar          m_wndToolBar;
 	CStatusBar        m_wndStatusBar;
-	CMainView   *m_View;
+	CMainView*        m_View;
 
 // 生成的消息映射函数
 protected:
